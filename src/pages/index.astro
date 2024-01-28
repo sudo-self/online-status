@@ -1,0 +1,66 @@
+---
+import { monitorsSchema } from "../utils/models.js";
+import StatusBar from "../components/status-bar.astro";
+import Callout from "../components/callout.astro";
+
+const env = Astro.locals.runtime.env;
+
+const response = await fetch("https://api.openstatus.dev/v1/monitor", {
+  headers: {
+    "x-openstatus-key": env.API_KEY,
+  },
+});
+
+// TODO: error handling! if response is not ok (e.g. wrong API_KEY)
+
+const data = await response.json();
+
+
+
+const result = monitorsSchema.parse(data);
+
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content="Fork your own astro status page for your openstatus workspace.">
+    <title>Status Page</title>
+  </head>
+  <body class="flex min-h-screen w-full flex-col p-4 md:p-8">
+    <main class="flex h-full w-full flex-1 flex-col gap-4 mx-auto max-w-sm">
+        <div class="mx-auto flex w-full flex-col gap-6">
+          <div class="col-span-full flex items-start justify-between">
+            <div class="flex w-full flex-col gap-4">
+              <div>
+                <h1 class="font-cal text-3xl">Astro Status Page</h1>
+                <p class="text-gray-600">
+                  An open source status page by OpenStatus
+                </p>
+              </div>
+              <div class="grid gap-2">
+                {result.map((monitor) => <StatusBar {...monitor} />)}
+              </div>
+            </div>
+          </div>
+        </div>
+        <Callout />
+        <footer>
+          <p class="text-gray-600 text-center text-sm">
+            powered by{" "}
+            <a
+              href="https://www.openstatus.dev"
+              target="_blank"
+              rel="noreferrer"
+              class="text-gray-900 underline underline-offset-4 hover:no-underline"
+            >
+              openstatus.dev
+            </a>
+          </p>
+        </footer>
+    </main>
+  </body>
+</html>
