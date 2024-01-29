@@ -1,7 +1,5 @@
 Grab an api key from [Openstatus.dev](https://www.openstatus.dev)
 
-open terminal run the following commands:
-
 ```
 git clone https://github.com/sudo-self/domain-status.git
 cd domain-status
