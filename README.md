@@ -17,8 +17,8 @@ deploy with cloudflare pages
 
 ```
 pnpm install -g wrangler
-pnpm build
-npx wrangler pages deploy dist
+wrangler pages dev --compatibility-date=2023-12-06 -- astro dev
+astro build && wrangler pages deploy ./dist
 ```
 <img width="1440" alt="Screenshot 2024-01-28 at 5 34 31 PM" src="https://github.com/sudo-self/domain-status/assets/119916323/9cd64e39-2413-4f11-b3ce-47feca552981">
 
