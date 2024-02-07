@@ -1,4 +1,7 @@
-Grab an api key from [Openstatus.dev](https://www.openstatus.dev)
+### Grab an api key from [Openstatus.dev](https://www.openstatus.dev)
+
+![Screenshot 2024-02-06 at 9 39 40 PM](https://github.com/sudo-self/domain-status/assets/119916323/077e8660-1699-46a9-b233-ac0707c0c2a1)
+
 
 ```
 git clone https://github.com/sudo-self/domain-status.git
